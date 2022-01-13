@@ -1,0 +1,17 @@
+﻿<!--
+/* ==============================
+** Copyright 2021, 2022 nishy software
+**
+**      First Author : nishy software
+**		Create : 2021/12/07
+** ============================== */
+-->
+<Application x:Class="NishySoftware.Wpf.AttachedProperties.Showcase.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NishySoftware.Wpf.AttachedProperties.Showcase"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

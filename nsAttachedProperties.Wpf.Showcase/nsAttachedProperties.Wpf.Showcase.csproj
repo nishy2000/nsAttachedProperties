@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>NishySoftware.Wpf.AttachedProperties.Showcase</RootNamespace>
+    <Version>1.0.0.0</Version>
+    <PackageVersion>1.0.0-alpha01</PackageVersion>
+    <Copyright>©2021, 2022 nishy software</Copyright>
+    <Company>nishy software</Company>
+    <Authors>nishy software</Authors>
+    <RepositoryUrl>https://github.com/nishy2000/nsAttachedProperties</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/nishy2000/nsAttachedProperties</PackageProjectUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageId>NishySoftware.Wpf.AttachedProperties.Showcase</PackageId>
+    <PackageTags>WPF xaml AttachedProperty</PackageTags>
+    <Description>
+      Provides the attached properties with various functions.
+    </Description>
+    <PackageReleaseNotes>
+      Changes
+      - Initial version
+    </PackageReleaseNotes>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Prism.Core" Version="8.1.97" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\nsAttachedProperties.Wpf\nsAttachedProperties.Wpf.csproj" />
+  </ItemGroup>
+
+</Project>
