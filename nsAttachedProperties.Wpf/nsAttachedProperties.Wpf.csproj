@@ -4,7 +4,7 @@
     <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>NishySoftware.Wpf.AttachedProperties</RootNamespace>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.01150</Version>
     <PackageVersion>1.0.0-alpha01</PackageVersion>
     <Copyright>©2021, 2022 nishy software</Copyright>
     <Company>nishy software</Company>
@@ -14,13 +14,14 @@
     <PackageProjectUrl>https://github.com/nishy2000/nsAttachedProperties</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageId>NishySoftware.Wpf.AttachedProperties</PackageId>
-    <PackageTags>WPF xaml AttachedProperty</PackageTags>
+    <PackageTags>WPF xaml Attached-Properties nsAttachedProperties</PackageTags>
     <Description>
-      Provides the attached properties with various functions.
+      Provides the attached properties that can extend the functionality and change the behavior of existing WPF controls.
     </Description>
     <PackageReleaseNotes>
       Changes
       - Initial version
+	  - Support ScrollViewerProperties.MouseWheelHandlingMode attached property
     </PackageReleaseNotes>
   </PropertyGroup>
 
