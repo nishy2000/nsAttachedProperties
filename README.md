@@ -1,5 +1,6 @@
 # nsAttachedProperties (NishySoftware.Wpf.AttachedProperties)
 
+[Click here](https://nishy-software.com/ja/nsAttachedProperties/) for Japanese page (日本語ページは[こちら](https://nishy-software.com/ja/nsAttachedProperties/))
 
 ## Development status
 
@@ -19,6 +20,10 @@
 ## About
 
 nsAttachedProperties (NishySoftware.Wpf.AttachedProperties) is a library of attached properties that can be used to extend the functionality and change the behavior of existing WPF controls.
+
+## License
+
+This library is under [the Apache-2.0 License](LICENSE).
 
 ## Installation
 
