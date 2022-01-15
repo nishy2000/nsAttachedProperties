@@ -1,12 +1,12 @@
 # Changelog for nsAttachedProperties
 
-## Ver. 1.0.0 nsAttachedProperties.Wpf
+## Ver. 1.0.0 (preview) nsAttachedProperties.Wpf
 
 - ### Breaking changes
   - Initail release
 
 - ### Enhancements/Features
-  - Add ScrollViewerProperties class for the ScrollViewerProperties.ScrollViewerWheelMode attached property
+  - Add ScrollViewerProperties class for the ScrollViewerProperties.MouseWheelHandlingMode attached property
   
 - ### Bug fixes
   - none
