@@ -4,8 +4,8 @@
     <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>NishySoftware.Wpf.AttachedProperties.Showcase</RootNamespace>
-    <Version>1.0.0.01150</Version>
-    <PackageVersion>1.0.0-alpha01</PackageVersion>
+    <Version>1.0.0.01200</Version>
+    <PackageVersion>1.0.0</PackageVersion>
     <Copyright>©2021, 2022 nishy software</Copyright>
     <Company>nishy software</Company>
     <Authors>nishy software</Authors>

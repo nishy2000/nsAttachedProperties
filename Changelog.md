@@ -1,6 +1,6 @@
 # Changelog for nsAttachedProperties
 
-## Ver. 1.0.0 (preview) nsAttachedProperties.Wpf
+## Ver. 1.0.0 nsAttachedProperties.Wpf
 
 - ### Breaking changes
   - Initail release
