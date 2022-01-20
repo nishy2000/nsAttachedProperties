@@ -1,6 +1,6 @@
-# nsAttachedProperties (NishySoftware.Wpf.AttachedProperties)
+ï»¿# nsAttachedProperties (NishySoftware.Wpf.AttachedProperties)
 
-[Click here](https://nishy-software.com/ja/nsAttachedProperties/) for Japanese page (“ú–{Œêƒy[ƒW‚Í[‚±‚¿‚ç](https://nishy-software.com/ja/nsAttachedProperties/))
+[Click here](https://nishy-software.com/ja/nsAttachedProperties/) for Japanese page (æ—¥æœ¬èªãƒšãƒ¼ã‚¸ã¯[ã“ã¡ã‚‰](https://nishy-software.com/ja/nsAttachedProperties/))
 
 ## Development status
 
