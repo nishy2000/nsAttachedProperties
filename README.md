@@ -58,25 +58,39 @@ The attached properties provided by ScrollViewerProperties are attached properti
 
 ### MouseWheelHandlingMode enum
 Specifies the handling mode of mouse wheel events of ScrollViewer for scrollable contents.
+
+This enumeration value is used in the ScrollViewerProperties.MouseWheelHandlingMode attached property.
 ```csharp
     public enum MouseWheelHandlingMode
     {
+        Inherit,
         Normal,
         OnlyVisible,
         OnlyScrollable,
     }
 ```
-This enumeration value is used in the ScrollViewerProperties.MouseWheelHandlingMode attached property.
 
 | Value | Behavior |
 | --- | --- | --- |
+| **Inherit** | Depends on the inheritance value of the parent. This value is default. |
 | **Normal** | Always handle the mouse wheel event. Original behavior of ScrollViewer |
 | **OnlyVisible** | Handle the mouse wheel event only when the vertical scroll bar is visible.  |
 | **OnlyScrollable** | Handle mouse wheel events only when the vertical scroll bar can scroll in the direction of the mouse wheel rotation. |
 
 ### MouseWheelHandlingMode attached property
-This attached property can be used to prevent the inner ScrollViewer from always handling the mouse wheel event when the ScrollViewer is nested.
+
+This attached property can be used to improve the scrolling behavior of a nested ScrollViewer by rotating the mouse wheel.
+
+As a concrete behavior, this attached property can be used to prevent the inner ScrollViewer from always handling the mouse wheel events when the ScrollViewer is nested.
+
 This attached property is mainly used for controls that use ScrollViewer to display content, such as DataGrid/ListView/ListBox.
+However, it can also be set for Window, Grid, GroupBox, etc.
+
+If this attached property is set to a FrameworkEelement other than ScrollViewer, its value will be inherited by the child ScrollViewers of that FrameworkEelement.
+The ScrollViewer whose value is inherited either does not have the MouseWheelHandlingMode attached property or has the MouseWheelHandlingMode attached property set to Inherit.
+
+If this attached property is set to a ScrollViewer, the value of that ScrollViewer will not be inherited by the child ScrollViewer.
+
 #### Examples
 Example for nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode
 ```xml

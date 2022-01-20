@@ -25,6 +25,7 @@ namespace NishySoftware.Wpf.AttachedProperties
 
         public enum MouseWheelHandlingMode
         {
+            Inherit,    // not used to set local current value
             Normal,
             OnlyVisible,
             OnlyScrollable,
@@ -36,7 +37,7 @@ namespace NishySoftware.Wpf.AttachedProperties
         /// </summary>
         public static readonly DependencyProperty MouseWheelHandlingModeProperty =
             DependencyProperty.RegisterAttached(nameof(MouseWheelHandlingMode), typeof(MouseWheelHandlingMode), typeof(ScrollViewerProperties),
-                new PropertyMetadata(MouseWheelHandlingMode.Normal, OnMouseWheelHandlingModeChanged));
+                new PropertyMetadata(MouseWheelHandlingMode.Inherit, OnMouseWheelHandlingModeChanged));
 
         public static MouseWheelHandlingMode GetMouseWheelHandlingMode(DependencyObject d)
         {
@@ -51,10 +52,24 @@ namespace NishySoftware.Wpf.AttachedProperties
         static void OnMouseWheelHandlingModeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (!(e.NewValue is MouseWheelHandlingMode mode)) { return; }
+
             if (d is ScrollViewer sv)
             {
+                // The value of ScrollViewer is not inherited by the child ScrollViewers.
+
                 sv.PreviewMouseWheel -= OnPreviewMouseWheel;   // remove if registered
-                if (mode == MouseWheelHandlingMode.Normal)
+                if (mode == MouseWheelHandlingMode.Inherit)
+                {
+                    // Gets the inherited value of the parent
+                    mode = GetInheritMouseWheelHandlingMode(sv);
+                    if (mode == MouseWheelHandlingMode.Inherit)
+                    {
+                        mode = MouseWheelHandlingMode.Normal;
+                    }
+                    //  Reassigns mode value as a local current value
+                    sv.SetCurrentValue(MouseWheelHandlingModeProperty, mode);
+                }
+                else if (mode == MouseWheelHandlingMode.Normal)
                 {
                     SetHandlesMouseWheelScrolling(sv, true);
                 }
@@ -65,13 +80,29 @@ namespace NishySoftware.Wpf.AttachedProperties
             }
             else
             {
+                // The value of FrameworkEelement other than ScrollViewer is inherited by the child ScrollViewers.
+
                 if (d is FrameworkElement fe)
                 {
                     fe.Loaded -= ScrollViewerOwer_Loaded;   // remove if registered
-                    fe.Loaded += ScrollViewerOwer_Loaded;
+                    if (mode != MouseWheelHandlingMode.Inherit)
+                    {
+                        fe.Loaded += ScrollViewerOwer_Loaded;
+                    }
                     if (fe.IsLoaded)
                     {
-                        UpdateChildScrollViewer(fe);
+                        if (mode == MouseWheelHandlingMode.Inherit)
+                        {
+                            // Gets the inherited value of the parent
+                            mode = GetInheritMouseWheelHandlingMode(fe);
+                            if (mode == MouseWheelHandlingMode.Inherit)
+                            {
+                                // Set normal mode to children ScrollViewers
+                                mode = MouseWheelHandlingMode.Normal;
+                            }
+                        }
+                        // Reassigns mode value as a local value to children ScrollViewers
+                        UpdateChildScrollViewers(fe, mode);
                     }
                 }
                 else
@@ -85,7 +116,8 @@ namespace NishySoftware.Wpf.AttachedProperties
         {
             if (sender is FrameworkElement fe)
             {
-                UpdateChildScrollViewer(fe);
+                var mode = GetMouseWheelHandlingMode(fe);
+                UpdateChildScrollViewers(fe, mode);
             }
         }
 
@@ -100,6 +132,13 @@ namespace NishySoftware.Wpf.AttachedProperties
             var handleEvent = true;
             switch (mode)
             {
+                case MouseWheelHandlingMode.Inherit:
+                case MouseWheelHandlingMode.Normal:
+                    handleEvent = true;
+                    break;
+                case MouseWheelHandlingMode.OnlyVisible:
+                    handleEvent = sv.ComputedVerticalScrollBarVisibility == Visibility.Visible;
+                    break;
                 case MouseWheelHandlingMode.OnlyScrollable:
                     if (e.Delta > 0)
                     {
@@ -109,12 +148,6 @@ namespace NishySoftware.Wpf.AttachedProperties
                     {
                         handleEvent = sv.VerticalOffset < sv.ScrollableHeight;
                     }
-                    break;
-                case MouseWheelHandlingMode.OnlyVisible:
-                    handleEvent = sv.ComputedVerticalScrollBarVisibility == Visibility.Visible;
-                    break;
-                case MouseWheelHandlingMode.Normal:
-                    handleEvent = true;
                     break;
             }
             SetHandlesMouseWheelScrolling(sv, handleEvent);
@@ -139,47 +172,75 @@ namespace NishySoftware.Wpf.AttachedProperties
             _handlesMouseWheelScrollingPropInfo?.SetValue(sv, enable);
         }
 
+        static bool UpdateChildScrollViewers(FrameworkElement fe, MouseWheelHandlingMode mode)
+        {
+            var children = EnumChildScrollViewersWithoutMouseWheelHandlingMode(fe);
+            if (children.Any())
+            {
+                foreach (var sv in children)
+                {
+                    if (mode == MouseWheelHandlingMode.Inherit)
+                    {
+                        sv.ClearValue(MouseWheelHandlingModeProperty);
+                    }
+                    else
+                    {
+                        sv.SetCurrentValue(MouseWheelHandlingModeProperty, mode);
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         static bool IsDefaultMouseWheelHandlingMode(DependencyObject d)
         {
             var vs = DependencyPropertyHelper.GetValueSource(d, MouseWheelHandlingModeProperty);
             return vs.BaseValueSource == BaseValueSource.Default;
         }
 
-        static bool UpdateChildScrollViewer(FrameworkElement fe)
+        static MouseWheelHandlingMode GetInheritMouseWheelHandlingMode(FrameworkElement fe)
         {
-            // Find ScrollViewer in child elements of VisualTree
-            var sv = fe.GetChildOfType<ScrollViewer>();
-            if (sv == null) { return false; }
-
-            var mode = GetMouseWheelHandlingMode(fe);
-            // Overwrite the current value if the mode is default
-            if (IsDefaultMouseWheelHandlingMode(sv))
+            var mode = MouseWheelHandlingMode.Inherit;
+            DependencyObject parent = fe;
+            while (mode == MouseWheelHandlingMode.Inherit
+                && (parent = VisualTreeHelper.GetParent(parent)) != null)
             {
-                sv.SetCurrentValue(MouseWheelHandlingModeProperty, mode);
+                mode = GetMouseWheelHandlingMode(parent);
             }
+            return mode;
+        }
 
-            return true;
+        static IEnumerable<ScrollViewer> EnumChildScrollViewersWithoutMouseWheelHandlingMode(DependencyObject frameworkElement)
+        {
+            if (frameworkElement == null) yield break;
+
+            var count = VisualTreeHelper.GetChildrenCount(frameworkElement);
+            for (int i = 0; i < count; i++)
+            {
+                var child = VisualTreeHelper.GetChild(frameworkElement, i);
+                if (IsDefaultMouseWheelHandlingMode(child)
+                    || GetMouseWheelHandlingMode(child) == MouseWheelHandlingMode.Inherit)
+                {
+                    if (!(child is System.Windows.Controls.Primitives.TextBoxBase))
+                    {
+                        if (child is ScrollViewer sv)
+                        {
+                            yield return sv;
+                        }
+                        var children = EnumChildScrollViewersWithoutMouseWheelHandlingMode(child);
+                        foreach (var j in children)
+                        {
+                            yield return j;
+                        }
+                    }
+                }
+            }
         }
 
         #endregion
-    }
-
-    static class ScrollViewerPropertiesExtenstions
-    {
-        public static T GetChildOfType<T>(this DependencyObject depObj)
-            where T : DependencyObject
-        {
-            if (depObj == null) return null;
-
-            var count = VisualTreeHelper.GetChildrenCount(depObj);
-            for (int i = 0; i < count; i++)
-            {
-                var child = VisualTreeHelper.GetChild(depObj, i);
-
-                var result = (child as T) ?? GetChildOfType<T>(child);
-                if (result != null) return result;
-            }
-            return null;
-        }
     }
 }
