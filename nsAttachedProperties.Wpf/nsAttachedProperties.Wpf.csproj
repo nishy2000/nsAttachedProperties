@@ -17,7 +17,7 @@
     <PackageTags>WPF xaml Attached-Properties nsAttachedProperties</PackageTags>
     <Description>
         Provides the attached properties that can extend the functionality and change the behavior of existing WPF controls.
-		For example, the ScrollViewerProperties.MouseWheelHandlingMode attached property can be used to improve the scrolling behavior of a nested ScrollViewer by rotating the mouse wheel.
+For example, the ScrollViewerProperties.MouseWheelHandlingMode attached property can be used to improve the scrolling behavior of a nested ScrollViewer by rotating the mouse wheel.
 	</Description>
     <PackageReleaseNotes>
       Changes

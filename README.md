@@ -91,6 +91,20 @@ The ScrollViewer whose value is inherited either does not have the MouseWheelHan
 
 If this attached property is set to a ScrollViewer, the value of that ScrollViewer will not be inherited by the child ScrollViewer.
 
+
+However, in order not to affect the performance of WPF, the timing of searching for the ScrollViewer of a child element is limited to
+"when the value of the attached property of that control is changed" and "when the Loaded event of that control is fired".
+
+Therefore, the value of the attached property set in the parent control may not be reflected in the ScrollViewer of some child elements.
+
+For example, in TabControl's TabItem, etc., the controls in its content are instantiated when the TabItem becomes active.
+The Loaded event that occurs when the content is instantiated is not propagated to the TabControl or TabItem.
+Therefore, the value of the attached property set in the TabControl or TabItem will not be reflected in the content in the TabItem.
+In this case, it is necessary to set the attached property to the most parent control in the content of the TabItem.
+
+If the value of the attached property is sometimes not reflected in the ScrollViewer of the child element, this may be the situation.
+In this case, you can set the attached property for the control that is going to be instantiated later and it will be reflected.
+
 #### Examples
 Example for nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode
 ```xml
