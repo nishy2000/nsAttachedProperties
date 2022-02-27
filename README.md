@@ -35,6 +35,10 @@ PM> Install-Package NishySoftware.Wpf.AttachedProperties
 
 * [NishySoftware.Wpf.AttachedProperties](https://www.nuget.org/packages/NishySoftware.Wpf.AttachedProperties/) - nsAttachedProperties library.
 
+## Change history
+
+The change history of this library is [here](Changelog.md).
+
 ## Features / How to use
 The attached properties provided by this library can be used to extend the functionality and change the behavior of existing WPF controls.
 To specify a namespace in xaml, use `xmlns:nsAttachedProps="http://schemas.nishy-software.com/xaml/attached-properties"` or `xmlns:nsXaml="http://schemas.nishy-software.com/xaml"`.
@@ -51,23 +55,24 @@ To specify a namespace in xaml, use `xmlns:nsAttachedProps="http://schemas.nishy
 ## ScrollViewerProperties class
 **Namespace**: NishySoftware.Wpf.AttachedProperties  
 **Assembly**: nsAttachedProperties.Wpf.dll  
+**nuget packageId**: [NishySoftware.Wpf.AttachedProperties](https://www.nuget.org/packages/NishySoftware.Wpf.AttachedProperties/)
 
 The attached properties provided by ScrollViewerProperties are attached properties that can be used to extend the functionality and change the behavior of ScrollViewer control.
  - MouseWheelHandlingMode
 
 
 ### MouseWheelHandlingMode enum
-Specifies the handling mode of mouse wheel events of ScrollViewer for scrollable contents.
+Specify the handling mode of mouse wheel events of ScrollViewer for scrollable contents.
 
 This enumeration value is used in the ScrollViewerProperties.MouseWheelHandlingMode attached property.
 ```csharp
-    public enum MouseWheelHandlingMode
-    {
-        Inherit,
-        Normal,
-        OnlyVisible,
-        OnlyScrollable,
-    }
+public enum MouseWheelHandlingMode
+{
+    Inherit,
+    Normal,
+    OnlyVisible,
+    OnlyScrollable,
+}
 ```
 
 | Value | Behavior |
@@ -82,6 +87,8 @@ This enumeration value is used in the ScrollViewerProperties.MouseWheelHandlingM
 This attached property can be used to improve the scrolling behavior of a nested ScrollViewer by rotating the mouse wheel.
 
 As a concrete behavior, this attached property can be used to prevent the inner ScrollViewer from always handling the mouse wheel events when the ScrollViewer is nested.
+
+The behavior for handling mouse wheel events is specified by the MouseWheelHandlingMode enumeration value.
 
 This attached property is mainly used for controls that use ScrollViewer to display content, such as DataGrid/ListView/ListBox.
 However, it can also be set for Window, Grid, GroupBox, etc.
@@ -119,5 +126,71 @@ Example for nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode
                   ItemsSource="{Binding Source={StaticResource SmallDataItemsView1}}"
                   nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyScrollable"/>
         </DataGrid>
+...
+```
+
+## TextBoxProperties class
+**Namespace**: NishySoftware.Wpf.AttachedProperties  
+**Assembly**: nsAttachedProperties.Wpf.dll  
+**nuget packageId**: [NishySoftware.Wpf.AttachedProperties](https://www.nuget.org/packages/NishySoftware.Wpf.AttachedProperties/)
+
+The attached properties provided by TextBoxProperties are attached properties that can be used to extend the functionality and change the behavior of TextBox control.
+ - ReturnBehavior
+
+
+### ReturnBehaviorMode enum
+Specify the behavior of the TextBox control when the Enter key is pressed.
+
+This enumeration value is used in the TextBoxProperties.ReturnBehavior attached property.
+```csharp
+public enum ReturnBehaviorMode
+{
+    None = 0,
+    MoveFocus = 1,
+    UpdateSource = 2,
+    SelectAll = 4,
+
+    // combination
+    UpdateSourceAndMoveFocus = 3,
+    UpdateSourceAndSelectAll = 6
+}
+```
+
+| Name | Value | Behavior when inputing Enter key |
+| --- | --- | --- | --- |
+| **None** | 0 | The behavior is not extended. Original behavior of TextBox. This value is default. |
+| **MoveFocus** | 1 | Move the focus to the next element if the Enter key is pressed alone. Move the focus to the previous element if the Enter and Shift keys are pressed at the same time.|
+| **UpdateSource** | 2 | Update binding source if TextBox.Text property is binding.  |
+| **SelectAll** | 4 | Select all the text.  |
+| **UpdateSourceAndMoveFocus** | 3 | ReturnBehaviorMode.MoveFocus behavior after ReturnBehaviorMode.UpdateSource behavior. |
+| **UpdateSourceAndSelectAll** | 6 | ReturnBehaviorMode.SelectAll behavior after ReturnBehaviorMode.UpdateSource behavior. |
+
+### ReturnBehavior attached property
+
+This attached property can be used to improve the behavior of the TextBox control when the Enter key is pressed.
+The behavior when the Enter key is pressed is specified using the ReturnBehaviorMode enumeration value.
+There are many values defined in the ReturnBehaviorMode enumeration, but the most commonly used are MoveFocus, UpdateSource, BBBB, and UpdateSourceAndSelectAll.
+
+If this attached property is set to a FrameworkEelement other than the TextBox control, it will be ignored.
+
+If this attached property is set to a TextBox control that has AcceptsReturn property set to true, it will be ignored.
+
+#### Examples
+Example for nsAttachedProps:TextBoxProperties.ReturnBehavior
+```xml
+<Window
+  ...
+  xmlns:nsAttachedProps="http://schemas.nishy-software.com/xaml/attached-properties">
+    <Grid>
+...
+        <TextBox Grid.Row="0"
+                 nsAttachedProps:TextBoxProperties.ReturnBehavior="MoveFocus"
+                 Text="{Binding EditBoxValue0}"/>
+        <TextBox Grid.Row="1"
+                 nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSource"
+                 Text="{Binding EditBoxValue1}"/>
+        <TextBox Grid.Row="2"
+                 nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
+                 Text="{Binding EditBoxValue2}"/>
 ...
 ```

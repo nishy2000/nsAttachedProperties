@@ -1,5 +1,21 @@
 # Changelog for nsAttachedProperties
 
+
+## Ver. 1.1.0 nsAttachedProperties.Wpf
+
+- ### Breaking changes
+  - none
+
+- ### Enhancements/Features
+  - Add TextBoxProperties class for the TextBoxProperties.ReturnBehavior attached property.
+This attached property can be used to improve the TextBox behavior when the Enter key is pressed.
+
+- ### Bug fixes
+  - none
+
+- ### Limitations
+  - none
+
 ## Ver. 1.0.0 nsAttachedProperties.Wpf
 
 - ### Breaking changes
