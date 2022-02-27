@@ -76,7 +76,7 @@ public enum MouseWheelHandlingMode
 ```
 
 | Value | Behavior |
-| --- | --- | --- |
+| --- | --- |
 | **Inherit** | Depends on the inheritance value of the parent. This value is default. |
 | **Normal** | Always handle the mouse wheel event. Original behavior of ScrollViewer |
 | **OnlyVisible** | Handle the mouse wheel event only when the vertical scroll bar is visible.  |
@@ -157,7 +157,7 @@ public enum ReturnBehaviorMode
 ```
 
 | Name | Value | Behavior when inputing Enter key |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | **None** | 0 | The behavior is not extended. Original behavior of TextBox. This value is default. |
 | **MoveFocus** | 1 | Move the focus to the next element if the Enter key is pressed alone. Move the focus to the previous element if the Enter and Shift keys are pressed at the same time.|
 | **UpdateSource** | 2 | Update binding source if TextBox.Text property is binding.  |
