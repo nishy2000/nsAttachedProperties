@@ -4,8 +4,8 @@
     <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>NishySoftware.Wpf.AttachedProperties.Showcase</RootNamespace>
-    <Version>1.0.0.01200</Version>
-    <PackageVersion>1.0.0</PackageVersion>
+    <Version>1.1.0.02270</Version>
+    <PackageVersion>1.1.0</PackageVersion>
     <Copyright>©2021, 2022 nishy software</Copyright>
     <Company>nishy software</Company>
     <Authors>nishy software</Authors>
@@ -16,12 +16,14 @@
     <PackageId>NishySoftware.Wpf.AttachedProperties.Showcase</PackageId>
     <PackageTags>WPF xaml Attached-Properties nsAttachedProperties</PackageTags>
     <Description>
-       Showcase of the attached properties that can extend the functionality and change the behavior of existing WPF controls.
+Showcase of the attached properties that can extend the functionality and change the behavior of existing WPF controls.
     </Description>
     <PackageReleaseNotes>
-      Changes
-      - Initial version
-	  - Add example of ScrollViewerProperties.MouseWheelHandlingMode attached property
+Changes from 1.0.0
+	- Add example of TextBoxProperties.ReturnBehavior attached property
+Changes 1.0.0
+    - Initial version
+	- Add example of ScrollViewerProperties.MouseWheelHandlingMode attached property
     </PackageReleaseNotes>
     <OutputType>WinExe</OutputType>
   </PropertyGroup>
