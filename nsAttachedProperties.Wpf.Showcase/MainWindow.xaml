@@ -40,158 +40,250 @@
         <CollectionViewSource x:Key="LargeDataItemsView2"  Source="{StaticResource LargeDataItems}" />
         <CollectionViewSource x:Key="LargeDataItemsView3"  Source="{StaticResource LargeDataItems}" />
     </Window.Resources>
-    <GroupBox Margin="4"
-              VerticalAlignment="Top"
-              Header="nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode"
-              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="{Binding ElementName=ComboBoxWheelHandlingMode,Path=SelectedValue}">
-        <Grid>
-            <Grid.Resources>
-                <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-                    <Setter Property="Margin" Value="4,4,4,8"/>
-                </Style>
-                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
-                    <Setter Property="Margin" Value="4,0"/>
-                </Style>
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal">
-                    <TextBlock Text="MouseWheelHandlingMode of the above GroupBox: "/>
-                    <ComboBox x:Name="ComboBoxWheelHandlingMode"
-                              MinWidth="100"
-                              SelectedIndex="0"
-                              SelectedValuePath="DataContext">
-                        <ComboBoxItem DataContext="Inherit" Content="{Binding .}"/>
-                        <ComboBoxItem DataContext="Normal" Content="{Binding .}"/>
-                        <ComboBoxItem DataContext="OnlyVisible" Content="{Binding .}"/>
-                        <ComboBoxItem DataContext="OnlyScrollable" Content="{Binding .}"/>
-                    </ComboBox>
-                </StackPanel>
-
-                <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="Default (Inherit)"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Text="Normal"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="Bold" Text="OnlyVisible"/>
-                <TextBlock Grid.Row="1" Grid.Column="3" FontWeight="Bold" Text="OnlyScrollable"/>
-            </Grid>
-            <ScrollViewer Grid.Row="1"
-                          Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}"
-                          HorizontalScrollBarVisibility="Disabled"
-                          Height="300">
-                <Grid>
+    <TabControl>
+        <TabItem Header="ScrollViewerProperties">
+            <GroupBox Margin="4"
+                      VerticalAlignment="Top"
+                      Header="nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode"
+                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="{Binding ElementName=ComboBoxWheelHandlingMode,Path=SelectedValue}">
+                <Grid Margin="4">
                     <Grid.Resources>
                         <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
-                            <Setter Property="AutoGenerateColumns" Value="False"/>
+                            <Setter Property="Margin" Value="4,4,4,8"/>
+                        </Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="Margin" Value="4,0"/>
                         </Style>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="150"/>
-                        <RowDefinition Height="200"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="40"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="without virtical scroll bar"/>
-                    <TextBlock Grid.Column="1" Text="without virtical scroll bar"/>
-                    <TextBlock Grid.Column="2" Text="without virtical scroll bar"/>
-                    <TextBlock Grid.Column="3" Text="without virtical scroll bar"/>
-                    <DataGrid Grid.Row="1"
-                              Grid.Column="0"
-                              ItemsSource="{Binding Source={StaticResource SmallDataItemsView0}}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="1"
-                              Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource SmallDataItemsView1}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="Normal">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="1"
-                              Grid.Column="2"
-                              ItemsSource="{Binding Source={StaticResource SmallDataItemsView2}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyVisible">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="1"
-                              Grid.Column="3"
-                              ItemsSource="{Binding Source={StaticResource SmallDataItemsView3}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyScrollable">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal">
+                            <TextBlock Text="MouseWheelHandlingMode of the above GroupBox: "/>
+                            <ComboBox x:Name="ComboBoxWheelHandlingMode"
+                                      MinWidth="100"
+                                      SelectedIndex="0"
+                                      SelectedValuePath="DataContext">
+                                <ComboBoxItem DataContext="Inherit" Content="{Binding .}"/>
+                                <ComboBoxItem DataContext="Normal" Content="{Binding .}"/>
+                                <ComboBoxItem DataContext="OnlyVisible" Content="{Binding .}"/>
+                                <ComboBoxItem DataContext="OnlyScrollable" Content="{Binding .}"/>
+                            </ComboBox>
+                        </StackPanel>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="with virtical scroll bar"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="with virtical scroll bar"/>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="with virtical scroll bar"/>
-                    <TextBlock Grid.Row="2" Grid.Column="3" Text="with virtical scroll bar"/>
-                    <DataGrid Grid.Row="3"
-                              Grid.Column="0"
-                              ItemsSource="{Binding Source={StaticResource LargeDataItems}}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="3"
-                              Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="Normal">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="3"
-                              Grid.Column="2"
-                              ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyVisible">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <DataGrid Grid.Row="3"
-                              Grid.Column="3"
-                              ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
-                              nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyScrollable">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="Default (Inherit)"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="Bold" Text="Normal"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" FontWeight="Bold" Text="OnlyVisible"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3" FontWeight="Bold" Text="OnlyScrollable"/>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1"
+                                  Width="{Binding ActualWidth,RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid}}"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  Height="300">
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+                                    <Setter Property="AutoGenerateColumns" Value="False"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="150"/>
+                                <RowDefinition Height="200"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="without virtical scroll bar"/>
+                            <TextBlock Grid.Column="1" Text="without virtical scroll bar"/>
+                            <TextBlock Grid.Column="2" Text="without virtical scroll bar"/>
+                            <TextBlock Grid.Column="3" Text="without virtical scroll bar"/>
+                            <DataGrid Grid.Row="1"
+                                      Grid.Column="0"
+                                      ItemsSource="{Binding Source={StaticResource SmallDataItemsView0}}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="1"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding Source={StaticResource SmallDataItemsView1}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="Normal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="1"
+                                      Grid.Column="2"
+                                      ItemsSource="{Binding Source={StaticResource SmallDataItemsView2}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyVisible">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="1"
+                                      Grid.Column="3"
+                                      ItemsSource="{Binding Source={StaticResource SmallDataItemsView3}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyScrollable">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="with virtical scroll bar"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="with virtical scroll bar"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="with virtical scroll bar"/>
+                            <TextBlock Grid.Row="2" Grid.Column="3" Text="with virtical scroll bar"/>
+                            <DataGrid Grid.Row="3"
+                                      Grid.Column="0"
+                                      ItemsSource="{Binding Source={StaticResource LargeDataItems}}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="3"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="Normal">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="3"
+                                      Grid.Column="2"
+                                      ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyVisible">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid Grid.Row="3"
+                                      Grid.Column="3"
+                                      ItemsSource="{Binding Source={StaticResource LargeDataItems}}"
+                                      nsAttachedProps:ScrollViewerProperties.MouseWheelHandlingMode="OnlyScrollable">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </ScrollViewer>
                 </Grid>
-            </ScrollViewer>
-        </Grid>
-    </GroupBox>
+            </GroupBox>
+        </TabItem>
+        <TabItem Header="TextBoxProperties">
+            <GroupBox Margin="4"
+                      VerticalAlignment="Stretch"
+                      Header="nsAttachedProps:TextBoxProperties.ReturnBehavior">
+                <Grid Margin="4">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Setter Property="Margin" Value="2"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsReadOnly" Value="True">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="Element binding"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" FontWeight="Bold" Text="Data binding (OneWay)"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" FontWeight="Bold" Text="Data binding (TwoWay)"/>
+                    <TextBlock Grid.Row="0" Grid.Column="4" FontWeight="Bold" Text="ReturnBehavior"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxDefault}"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue1,Mode=OneWay}"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" x:Name="textBoxDefault"
+                             Text="{Binding EditBoxValue1}"/>
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="without ReturnBehavior"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="2"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxNone}"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue2,Mode=OneWay}"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" x:Name="textBoxNone"
+                             nsAttachedProps:TextBoxProperties.ReturnBehavior="None"
+                             Text="{Binding EditBoxValue2}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="with None"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="3"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMoveFocus}"/>
+                    <TextBox Grid.Row="3" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue3,Mode=OneWay}"/>
+                    <TextBox Grid.Row="3" Grid.Column="3" x:Name="textBoxMoveFocus"
+                             nsAttachedProps:TextBoxProperties.ReturnBehavior="MoveFocus"
+                             Text="{Binding EditBoxValue3}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="with MoveFocus"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="4"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSource}"/>
+                    <TextBox Grid.Row="4" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue4,Mode=OneWay}"/>
+                    <TextBox Grid.Row="4" Grid.Column="3" x:Name="textBoxUpdateSource"
+                             nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSource"
+                             Text="{Binding EditBoxValue4}"/>
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="with UpdateSource"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="Bold" Text="5"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSourceAndSelectAll}"/>
+                    <TextBox Grid.Row="5" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue5,Mode=OneWay}"/>
+                    <TextBox Grid.Row="5" Grid.Column="3" x:Name="textBoxUpdateSourceAndSelectAll"
+                             nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
+                             Text="{Binding EditBoxValue5}"/>
+                    <TextBlock Grid.Row="5" Grid.Column="4" Text="with UpdateSourceAndSelectAll"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" FontWeight="Bold" Text="6"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMultiLine}"/>
+                    <TextBox Grid.Row="6" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue6,Mode=OneWay}"/>
+                    <TextBox Grid.Row="6" Grid.Column="3" x:Name="textBoxMultiLine"
+                             nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
+                             AcceptsReturn="True"
+                             Text="{Binding EditBoxValue6}"/>
+                    <TextBlock Grid.Row="6" Grid.Column="4" Text="AcceptsReturn is true"/>
+                </Grid>
+            </GroupBox>
+        </TabItem>
+    </TabControl>
 </Window>

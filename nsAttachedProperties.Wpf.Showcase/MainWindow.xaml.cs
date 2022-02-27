@@ -29,6 +29,7 @@ namespace NishySoftware.Wpf.AttachedProperties.Showcase
     {
         public MainWindow()
         {
+            this.DataContext = new MainViewModel();
             InitializeComponent();
         }
     }
