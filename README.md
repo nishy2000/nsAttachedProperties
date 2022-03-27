@@ -167,11 +167,14 @@ public enum ReturnBehaviorMode
 
 ### ReturnBehavior attached property
 
-This attached property can be used to improve the behavior of the TextBox control when the Enter key is pressed.
+This attached property can be used to improve the behavior of the TextBox control and the editable ComboBox control when the Enter key is pressed.
 The behavior when the Enter key is pressed is specified using the ReturnBehaviorMode enumeration value.
-There are many values defined in the ReturnBehaviorMode enumeration, but the most commonly used are MoveFocus, UpdateSource, BBBB, and UpdateSourceAndSelectAll.
+There are many values defined in the ReturnBehaviorMode enumeration, but the most commonly used are `MoveFocus`, `UpdateSource`, and `UpdateSourceAndSelectAll`.
 
-If this attached property is set to a FrameworkEelement other than the TextBox control, it will be ignored.
+In ComboBox with `ComboBox.IsEditable=true` , the default value of UpdateSourceTrigger when data-binding to ComboBox.Text is `PropertyChanged`,
+but this attached property is most effective when UpdateSourceTrigger is set to `LostFocus`.
+
+If this attached property is set to a FrameworkEelement other than the TextBox control and the ComboBox control, it will be ignored.
 
 If this attached property is set to a TextBox control that has AcceptsReturn property set to true, it will be ignored.
 
@@ -192,5 +195,18 @@ Example for nsAttachedProps:TextBoxProperties.ReturnBehavior
         <TextBox Grid.Row="2"
                  nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
                  Text="{Binding EditBoxValue2}"/>
+...
+        <ComboBox Grid.Row="5"
+                  nsAttachedProps:TextBoxProperties.ReturnBehavior="MoveFocus"
+                  IsEditable="True"
+                  Text="{Binding EditBoxValue5,UpdateSourceTrigger=LostFocus}"/>
+        <ComboBox Grid.Row="6"
+                  nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSource"
+                  IsEditable="True"
+                  Text="{Binding EditBoxValue6,UpdateSourceTrigger=LostFocus}"/>
+        <ComboBox Grid.Row="7"
+                  nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
+                  IsEditable="True"
+                  Text="{Binding EditBoxValue7,UpdateSourceTrigger=LostFocus}"/>
 ...
 ```

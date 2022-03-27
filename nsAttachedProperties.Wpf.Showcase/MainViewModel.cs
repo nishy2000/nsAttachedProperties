@@ -78,5 +78,50 @@ namespace NishySoftware.Wpf.AttachedProperties.Showcase
             set { this.SetProperty(ref this._editBoxBalue6, value); }
         }
         #endregion
+
+        #region EditBoxValue7
+        string _editBoxBalue7;
+        public string EditBoxValue7
+        {
+            get { return this._editBoxBalue7; }
+            set { this.SetProperty(ref this._editBoxBalue7, value); }
+        }
+        #endregion
+
+        #region EditBoxValue8
+        string _editBoxBalue8;
+        public string EditBoxValue8
+        {
+            get { return this._editBoxBalue8; }
+            set { this.SetProperty(ref this._editBoxBalue8, value); }
+        }
+        #endregion
+
+        #region EditBoxValue9
+        string _editBoxBalue9;
+        public string EditBoxValue9
+        {
+            get { return this._editBoxBalue9; }
+            set { this.SetProperty(ref this._editBoxBalue9, value); }
+        }
+        #endregion
+
+        #region EditBoxValue10
+        string _editBoxBalue10;
+        public string EditBoxValue10
+        {
+            get { return this._editBoxBalue10; }
+            set { this.SetProperty(ref this._editBoxBalue10, value); }
+        }
+        #endregion
+
+        #region EditBoxValue11
+        string _editBoxBalue11;
+        public string EditBoxValue11
+        {
+            get { return this._editBoxBalue11; }
+            set { this.SetProperty(ref this._editBoxBalue11, value); }
+        }
+        #endregion
     }
 }

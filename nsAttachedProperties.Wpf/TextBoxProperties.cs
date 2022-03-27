@@ -57,28 +57,65 @@ namespace NishySoftware.Wpf.AttachedProperties
         static void OnReturnBehaviorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (!(e.NewValue is ReturnBehaviorMode mode)) { return; }
-            if (!(d is TextBox tb)) { return; }
+
+            if (!(d is Control ctrl)) { return; }
+            if (!(ctrl is TextBox) && !(ctrl is ComboBox)) { return; }
 
             if (mode != ReturnBehaviorMode.None)
             {
-                tb.PreviewKeyDown += OnPreviewKeyDown;
+                ctrl.PreviewKeyDown += OnPreviewKeyDown;
             }
             else
             {
-                tb.PreviewKeyDown -= OnPreviewKeyDown;
+                ctrl.PreviewKeyDown -= OnPreviewKeyDown;
             }
+        }
+
+        static MethodInfo _getTemplateChildMethodInfo;
+        static DependencyObject GetTemplateChild(FrameworkElement fe, string childName)
+        {
+            if (fe == null)
+            {
+                return null;
+            }
+
+            if (_getTemplateChildMethodInfo == null)
+            {
+                // Get PropInfo of internal property using reflection
+                var feType = typeof(FrameworkElement);
+                _getTemplateChildMethodInfo = feType.GetMethod("GetTemplateChild", BindingFlags.NonPublic | BindingFlags.Instance);
+            }
+
+            return _getTemplateChildMethodInfo?.Invoke(fe, new object [] { childName }) as DependencyObject;
         }
 
         static void OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != System.Windows.Input.Key.Enter
-                || !(sender is TextBox tb)
+                || !(sender is DependencyObject owner))
+            {
+                return;
+            }
+
+            var tb = sender as TextBox;
+            ComboBox cb = null;
+            if (tb == null)
+            {
+                cb = sender as ComboBox;
+                if (cb != null
+                    && cb.IsEditable && !cb.IsReadOnly)
+                {
+                    tb = GetTemplateChild(cb, "PART_EditableTextBox") as TextBox;
+                }
+            }
+
+            if (tb == null
                 || tb.AcceptsReturn)
             {
                 return;
             }
 
-            var mode = GetReturnBehavior(tb);
+            var mode = GetReturnBehavior(owner);
 
             if (mode == ReturnBehaviorMode.None) { return; }
 
@@ -88,7 +125,8 @@ namespace NishySoftware.Wpf.AttachedProperties
             {
                 if (mode.HasFlag(ReturnBehaviorMode.UpdateSource))
                 {
-                    var bindingExpression = BindingOperations.GetBindingExpression(tb, TextBox.TextProperty);
+                    var dp = cb != null ? ComboBox.TextProperty : TextBox.TextProperty;
+                    var bindingExpression = BindingOperations.GetBindingExpression(owner, dp);
                     bindingExpression?.UpdateSource();
                     e.Handled = true;
                 }

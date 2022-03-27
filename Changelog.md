@@ -1,5 +1,19 @@
 # Changelog for nsAttachedProperties
 
+## Ver. 1.2.0 nsAttachedProperties.Wpf
+
+- ### Breaking changes
+  - none
+
+- ### Enhancements/Features
+  - The TextBoxProperties.ReturnBehavior attached property also supports for an editable ComboBox control in addition to the EditBox control.
+This attached property can be used to improve the TextBox behavior in ComboBox when the Enter key is pressed.
+
+- ### Bug fixes
+  - none
+
+- ### Limitations
+  - none
 
 ## Ver. 1.1.0 nsAttachedProperties.Wpf
 

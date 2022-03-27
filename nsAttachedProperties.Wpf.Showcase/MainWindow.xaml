@@ -227,7 +227,13 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" Text="Element binding"/>
@@ -235,53 +241,101 @@
                     <TextBlock Grid.Row="0" Grid.Column="3" FontWeight="Bold" Text="Data binding (TwoWay)"/>
                     <TextBlock Grid.Row="0" Grid.Column="4" FontWeight="Bold" Text="ReturnBehavior"/>
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" FontWeight="Bold" Text="1"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxDefault}"/>
-                    <TextBox Grid.Row="1" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue1,Mode=OneWay}"/>
-                    <TextBox Grid.Row="1" Grid.Column="3" x:Name="textBoxDefault"
-                             Text="{Binding EditBoxValue1}"/>
-                    <TextBlock Grid.Row="1" Grid.Column="4" Text="without ReturnBehavior"/>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Text="TextBox.Text with UpdateSourceTrigger=Default"/>
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="2"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxNone}"/>
-                    <TextBox Grid.Row="2" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue2,Mode=OneWay}"/>
-                    <TextBox Grid.Row="2" Grid.Column="3" x:Name="textBoxNone"
+                    <TextBlock Grid.Row="2" Grid.Column="0" FontWeight="Bold" Text="1"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxDefault}"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue1,Mode=OneWay}"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" x:Name="textBoxDefault"
+                             Text="{Binding EditBoxValue1}"/>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="without ReturnBehavior"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="2"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxNone}"/>
+                    <TextBox Grid.Row="3" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue2,Mode=OneWay}"/>
+                    <TextBox Grid.Row="3" Grid.Column="3" x:Name="textBoxNone"
                              nsAttachedProps:TextBoxProperties.ReturnBehavior="None"
                              Text="{Binding EditBoxValue2}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="4" Text="with None"/>
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="with None"/>
 
-                    <TextBlock Grid.Row="3" Grid.Column="0" FontWeight="Bold" Text="3"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMoveFocus}"/>
-                    <TextBox Grid.Row="3" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue3,Mode=OneWay}"/>
-                    <TextBox Grid.Row="3" Grid.Column="3" x:Name="textBoxMoveFocus"
+                    <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="3"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMoveFocus}"/>
+                    <TextBox Grid.Row="4" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue3,Mode=OneWay}"/>
+                    <TextBox Grid.Row="4" Grid.Column="3" x:Name="textBoxMoveFocus"
                              nsAttachedProps:TextBoxProperties.ReturnBehavior="MoveFocus"
                              Text="{Binding EditBoxValue3}"/>
-                    <TextBlock Grid.Row="3" Grid.Column="4" Text="with MoveFocus"/>
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="with MoveFocus"/>
 
-                    <TextBlock Grid.Row="4" Grid.Column="0" FontWeight="Bold" Text="4"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSource}"/>
-                    <TextBox Grid.Row="4" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue4,Mode=OneWay}"/>
-                    <TextBox Grid.Row="4" Grid.Column="3" x:Name="textBoxUpdateSource"
+                    <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="Bold" Text="4"/>
+                    <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSource}"/>
+                    <TextBox Grid.Row="5" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue4,Mode=OneWay}"/>
+                    <TextBox Grid.Row="5" Grid.Column="3" x:Name="textBoxUpdateSource"
                              nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSource"
                              Text="{Binding EditBoxValue4}"/>
-                    <TextBlock Grid.Row="4" Grid.Column="4" Text="with UpdateSource"/>
+                    <TextBlock Grid.Row="5" Grid.Column="4" Text="with UpdateSource"/>
 
-                    <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="Bold" Text="5"/>
-                    <TextBox Grid.Row="5" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSourceAndSelectAll}"/>
-                    <TextBox Grid.Row="5" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue5,Mode=OneWay}"/>
-                    <TextBox Grid.Row="5" Grid.Column="3" x:Name="textBoxUpdateSourceAndSelectAll"
+                    <TextBlock Grid.Row="6" Grid.Column="0" FontWeight="Bold" Text="5"/>
+                    <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxUpdateSourceAndSelectAll}"/>
+                    <TextBox Grid.Row="6" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue5,Mode=OneWay}"/>
+                    <TextBox Grid.Row="6" Grid.Column="3" x:Name="textBoxUpdateSourceAndSelectAll"
                              nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
                              Text="{Binding EditBoxValue5}"/>
-                    <TextBlock Grid.Row="5" Grid.Column="4" Text="with UpdateSourceAndSelectAll"/>
+                    <TextBlock Grid.Row="6" Grid.Column="4" Text="with UpdateSourceAndSelectAll"/>
 
-                    <TextBlock Grid.Row="6" Grid.Column="0" FontWeight="Bold" Text="6"/>
-                    <TextBox Grid.Row="6" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMultiLine}"/>
-                    <TextBox Grid.Row="6" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue6,Mode=OneWay}"/>
-                    <TextBox Grid.Row="6" Grid.Column="3" x:Name="textBoxMultiLine"
+                    <TextBlock Grid.Row="7" Grid.Column="0" FontWeight="Bold" Text="6"/>
+                    <TextBox Grid.Row="7" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=textBoxMultiLine}"/>
+                    <TextBox Grid.Row="7" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue6,Mode=OneWay}"/>
+                    <TextBox Grid.Row="7" Grid.Column="3" x:Name="textBoxMultiLine"
                              nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
                              AcceptsReturn="True"
                              Text="{Binding EditBoxValue6}"/>
-                    <TextBlock Grid.Row="6" Grid.Column="4" Text="AcceptsReturn is true"/>
+                    <TextBlock Grid.Row="7" Grid.Column="4" Text="AcceptsReturn is true"/>
+
+                    <TextBlock Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" Text="ComboBox.Text with UpdateSourceTrigger=LostFocus"/>
+
+                    <TextBlock Grid.Row="9" Grid.Column="0" FontWeight="Bold" Text="1"/>
+                    <TextBox Grid.Row="9" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=comboBoxDefault}"/>
+                    <TextBox Grid.Row="9" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue7,Mode=OneWay}"/>
+                    <ComboBox Grid.Row="9" Grid.Column="3" x:Name="comboBoxDefault"
+                              IsEditable="True"
+                              Text="{Binding EditBoxValue7,UpdateSourceTrigger=LostFocus}"/>
+                    <TextBlock Grid.Row="9" Grid.Column="4" Text="without ReturnBehavior"/>
+
+                    <TextBlock Grid.Row="10" Grid.Column="0" FontWeight="Bold" Text="2"/>
+                    <TextBox Grid.Row="10" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=comboBoxNone}"/>
+                    <TextBox Grid.Row="10" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue8,Mode=OneWay}"/>
+                    <ComboBox Grid.Row="10" Grid.Column="3" x:Name="comboBoxNone"
+                              nsAttachedProps:TextBoxProperties.ReturnBehavior="None"
+                              IsEditable="True"
+                              Text="{Binding EditBoxValue8,UpdateSourceTrigger=LostFocus}"/>
+                    <TextBlock Grid.Row="10" Grid.Column="4" Text="with None"/>
+
+                    <TextBlock Grid.Row="11" Grid.Column="0" FontWeight="Bold" Text="3"/>
+                    <TextBox Grid.Row="11" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=comboBoxMoveFocus}"/>
+                    <TextBox Grid.Row="11" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue9,Mode=OneWay}"/>
+                    <ComboBox Grid.Row="11" Grid.Column="3" x:Name="comboBoxMoveFocus"
+                              nsAttachedProps:TextBoxProperties.ReturnBehavior="MoveFocus"
+                              IsEditable="True"
+                              Text="{Binding EditBoxValue9,UpdateSourceTrigger=LostFocus}"/>
+                    <TextBlock Grid.Row="11" Grid.Column="4" Text="with MoveFocus"/>
+
+                    <TextBlock Grid.Row="12" Grid.Column="0" FontWeight="Bold" Text="4"/>
+                    <TextBox Grid.Row="12" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=comboBoxUpdateSource}"/>
+                    <TextBox Grid.Row="12" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue10,Mode=OneWay}"/>
+                    <ComboBox Grid.Row="12" Grid.Column="3" x:Name="comboBoxUpdateSource"
+                              nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSource"
+                              IsEditable="True"
+                              Text="{Binding EditBoxValue10,UpdateSourceTrigger=LostFocus}"/>
+                    <TextBlock Grid.Row="12" Grid.Column="4" Text="with UpdateSource"/>
+
+                    <TextBlock Grid.Row="13" Grid.Column="0" FontWeight="Bold" Text="5"/>
+                    <TextBox Grid.Row="13" Grid.Column="1" IsReadOnly="True" Focusable="False" Text="{Binding Text,ElementName=comboBoxUpdateSourceAndSelectAll}"/>
+                    <TextBox Grid.Row="13" Grid.Column="2" IsReadOnly="True" Focusable="False" Text="{Binding EditBoxValue11,Mode=OneWay}"/>
+                    <ComboBox Grid.Row="13" Grid.Column="3" x:Name="comboBoxUpdateSourceAndSelectAll"
+                              nsAttachedProps:TextBoxProperties.ReturnBehavior="UpdateSourceAndSelectAll"
+                              IsEditable="True"
+                              Text="{Binding EditBoxValue11,UpdateSourceTrigger=LostFocus}"/>
+                    <TextBlock Grid.Row="13" Grid.Column="4" Text="with UpdateSourceAndSelectAll"/>
                 </Grid>
             </GroupBox>
         </TabItem>
