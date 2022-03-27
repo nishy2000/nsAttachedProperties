@@ -4,8 +4,8 @@
     <TargetFrameworks>net462;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <RootNamespace>NishySoftware.Wpf.AttachedProperties</RootNamespace>
-    <Version>1.1.0.02270</Version>
-    <PackageVersion>1.1.0</PackageVersion>
+    <Version>1.2.0.03270</Version>
+    <PackageVersion>1.2.0</PackageVersion>
     <Copyright>©2021, 2022 nishy software</Copyright>
     <Company>nishy software</Company>
     <Authors>nishy software</Authors>
@@ -21,6 +21,9 @@ For example, the ScrollViewerProperties.MouseWheelHandlingMode attached property
 The TextBoxProperties.ReturnBehavior attached property can be used to improve the TextBox behavior when the Enter key is pressed.
 	</Description>
     <PackageReleaseNotes>
+Changes from 1.1.0
+        - The TextBoxProperties.ReturnBehavior attached property also supports for an editable ComboBox control in addition to the EditBox control.
+        This attached property can be used to improve the TextBox behavior in ComboBox when the Enter key is pressed.
 Changes from 1.0.0
 		- Support TextBoxProperties.ReturnBehavior attached property.
 		This attached property can be used to improve the TextBox behavior when the Enter key is pressed.
